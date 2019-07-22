@@ -12,7 +12,7 @@ const getDir = path => {
   return path.replace(__dirname, "").replace(/\\/g, "/");
 };
 
-var readFile = (dir, done) => {
+const readFile = (dir, done) => {
   fs.readdir(dir, (err, list) => {
     if (err) {
       return done(err);
