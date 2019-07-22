@@ -8,7 +8,7 @@ let tree = {
   dirs: []
 };
 
-const getPathName = path => {
+const getDir = path => {
   return path.replace(__dirname, "").replace(/\\/g, "/");
 };
 
@@ -26,7 +26,7 @@ var readFile = (dir, done) => {
       fs.stat(file, (err, stat) => {
         if (stat && stat.isDirectory()) {
           readFile(file, (err, res) => {
-            tree.dirs.push(getPathName(file));
+            tree.dirs.push(getDir(file));
             if (!--pending) done(null, tree);
           });
         } else {
