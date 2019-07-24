@@ -1,18 +1,15 @@
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs'),
+	path = require('path');
+
 
 function readDirRecursive(startDir) {
 	const readDirQueue = []
 	const fileList = {
 		files: [],
 		dirs: []
-  };
-
-  function getDir(path){
-    return path.replace(__dirname, "").replace(/\\/g, "/");
-  };
+	};
 
 	function readDir(dir) {
 		function getItemList(readDir) {
@@ -46,10 +43,10 @@ function readDirRecursive(startDir) {
 			for (const { itemPath, isDirectory } of itemList) {
 				if (isDirectory) {
 					readDirQueue.push(itemPath);
-					fileList.dirs.push(getDir(itemPath))
+					fileList.dirs.push(itemPath)
 					continue;
 				} else {
-					fileList.files.push(getDir(itemPath));
+					fileList.files.push(itemPath);
 				}
 			}
 			if (readDirQueue.length > 0) {
@@ -67,7 +64,7 @@ function readDirRecursive(startDir) {
 	return readDir(startDir);
 }
 
-const pathToDir = path.join(__dirname, process.argv[2])
+const pathToDir = path.join(__dirname, process.argv[3])
 
 readDirRecursive(pathToDir)
 	.then((itemList) => console.log(JSON.stringify(itemList)))
