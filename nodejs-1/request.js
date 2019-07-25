@@ -1,4 +1,4 @@
-const http = require("http");
+const http = require('http');
 
 const argv = process.argv.slice(2)
 const requestsCount = isNaN(Number(argv[0])) ? 1 : Number(argv[0]);
@@ -25,16 +25,16 @@ var createRequest = (requestsCount, type) => {
   }
 
   if (type == 'sync') {
-   syncRequest(requestsCount);
+    syncRequest(requestsCount);
     return;
   }
 
-  console.log(`unknown request type!`);
+  console.log('unknown request type!');
 };
 
 const asyncRequest = (requestsCount) => {
   responses = new Array(requestsCount);
-  for (var i = 0; i < requestsCount; i++) { 
+  for (var i = 0; i < requestsCount; i++) {
     responses[i] = new Promise((resolve, reject) => {
       let newRequest = http.request(options);
       newRequest.end();

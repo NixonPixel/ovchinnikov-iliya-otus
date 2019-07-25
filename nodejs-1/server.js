@@ -1,4 +1,4 @@
-const http = require("http");
+const http = require('httphttp');
 const port = 3000
 
 const server = http.createServer((req, res) => {
@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
         }).then((data) => {
             console.log(data);
             console.log(res.statusCode)
-            res.write("<p>HI!!!</p>");
+            res.write('<p>HI!!!</p>');
             res.end();
         })
     }());
