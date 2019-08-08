@@ -5,6 +5,8 @@ const { mongoURI } = require('./config/config');
 
 const schema = require('./schema/schema')
 
+let port = process.env.PORT || 3000
+
 mongoose
     .connect(mongoURI)
     .then(() => console.log('Connection to the database was successful'))
@@ -17,4 +19,4 @@ app.use('/graphql', graphqlHTTP({
     schema
 }))
 
-app.listen(3000)
+app.listen(port)

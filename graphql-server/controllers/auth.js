@@ -18,6 +18,9 @@ module.exports.login = async function (parent, { email, password }) {
                 { expiresIn: 60 * 60 }
             );
             return {
+                email: candidate.email,
+                password: candidate.password,
+                id: candidate._id,
                 token: `Bearer ${token}`
             };
         } else {

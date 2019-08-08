@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLID, GraphQLInt, GraphQLList } = require('graphql')
+const { GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLID, GraphQLInt, GraphQLList, GraphQLNonNull } = require('graphql')
 const UserSchema = require('../models/User')
 const PositionSchema = require('../models/Position')
 const CategorySchema = require('../models/Category')
@@ -8,8 +8,8 @@ const UserType = new GraphQLObjectType({
     name: 'User',
     fields: () => ({
         id: { type: GraphQLID },
-        email: { type: GraphQLString },
-        password: { type: GraphQLID },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLID) },
         message: { type: GraphQLString },
         token: { type: GraphQLString }
     })
@@ -19,8 +19,8 @@ const CategoryType = new GraphQLObjectType({
     name: 'Category',
     fields: () => ({
         id: { type: GraphQLID },
-        name: { type: GraphQLString },
-        userId: { type: GraphQLID },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        userId: { type: new GraphQLNonNull(GraphQLID) },
         user: {
             type: UserType,
             resolve({ userId }, args) {
@@ -40,9 +40,9 @@ const PositionType = new GraphQLObjectType({
     name: 'Position',
     fields: () => ({
         id: { type: GraphQLID },
-        name: { type: GraphQLString },
-        cost: { type: GraphQLInt },
-        categoryId: { type: GraphQLID },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        cost: { type: new GraphQLNonNull(GraphQLInt) },
+        categoryId: { type: new GraphQLNonNull(GraphQLID) },
         userId: { type: GraphQLID },
     })
 })
@@ -77,8 +77,8 @@ const Mutation = new GraphQLObjectType({
         login: {
             type: UserType,
             args: {
-                email: { type: GraphQLString },
-                password: { type: GraphQLID },
+                email: { type: new GraphQLNonNull(GraphQLString) },
+                password: { type: new GraphQLNonNull(GraphQLID) },
             },
             resolve(parent, args) {
                 return login(parent, args)
@@ -87,8 +87,8 @@ const Mutation = new GraphQLObjectType({
         registration: {
             type: UserType,
             args: {
-                email: { type: GraphQLString },
-                password: { type: GraphQLID },
+                email: { type: new GraphQLNonNull(GraphQLString) },
+                password: { type: new GraphQLNonNull(GraphQLID) },
             },
             resolve(parent, args) {
                 return registration(parent, args)
@@ -97,8 +97,8 @@ const Mutation = new GraphQLObjectType({
         addCategory: {
             type: CategoryType,
             args: {
-                name: { type: GraphQLString },
-                userId: { type: GraphQLID },
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                userId: { type: new GraphQLNonNull(GraphQLID) },
             },
             resolve(parent, { name, userId }) {
                 return new CategorySchema({
@@ -110,10 +110,10 @@ const Mutation = new GraphQLObjectType({
         addPosition: {
             type: PositionType,
             args: {
-                name: { type: GraphQLString },
-                cost: { type: GraphQLInt },
-                categoryId: { type: GraphQLID },
-                userId: { type: GraphQLID },
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                cost: { type: new GraphQLNonNull(GraphQLInt) },
+                categoryId: { type: new GraphQLNonNull(GraphQLID) },
+                userId: { type: new GraphQLNonNull(GraphQLID) },
             },
             resolve(parent, { name, userId, categoryId, cost }) {
                 return new PositionSchema({
@@ -128,7 +128,7 @@ const Mutation = new GraphQLObjectType({
             type: CategoryType,
             args: {
                 id: { type: GraphQLID },
-                name: { type: GraphQLString },
+                name: { type: new GraphQLNonNull(GraphQLString) },
                 // userId: { type: GraphQLID },
             },
             resolve(parent, { name, id }) {
@@ -143,9 +143,9 @@ const Mutation = new GraphQLObjectType({
             type: PositionType,
             args: {
                 id: { type: GraphQLID },
-                name: { type: GraphQLString },
-                cost: { type: GraphQLInt },
-                categoryId: { type: GraphQLID },
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                cost: { type: new GraphQLNonNull(GraphQLInt) },
+                categoryId: { type: new GraphQLNonNull(GraphQLID) },
             },
             resolve(parent, { name, cost, id, categoryId }) {
                 return PositionSchema.findByIdAndUpdate(
