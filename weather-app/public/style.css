@@ -1,0 +1,9 @@
+#root{
+    background: rgb(22,213,218);
+    background: linear-gradient(90deg, rgba(22,213,218,0.9108018207282913) 0%, rgba(16,173,189,1) 38%, rgba(0,212,255,1) 100%);
+    height: 100vh;
+}
+body{
+    padding: 0;
+    margin: 0
+}
