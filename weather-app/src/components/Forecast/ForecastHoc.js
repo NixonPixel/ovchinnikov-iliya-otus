@@ -4,9 +4,9 @@ import {getFiveDayForecast} from '../../actions/actions'
 import classes from './styles'
 
 const mapStateToProps = ({fiveDaysForecast}) => {
-    const {forecast} = fiveDaysForecast
+    const {forecast, isLoading, error} = fiveDaysForecast
     return {
-        forecast
+        forecast, isLoading, error,
     }
 }
 

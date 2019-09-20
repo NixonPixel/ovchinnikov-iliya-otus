@@ -3,7 +3,7 @@ import withHoc from './HomeHoc'
 import { getAllCityInLocalStorage } from '../../utils/utils'
 import CurrentWeather from '../CurrentWeather'
 import CityList from '../CityList'
-import { Input, Button, } from '@material-ui/core'
+import { Input, Button, Typography, } from '@material-ui/core'
 
 class Home extends Component {
     state = {
@@ -22,6 +22,9 @@ class Home extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevState.selectedListItem !== this.state.selectedListItem) {
             this.props.getCurrentWeather(this.props.cityList.list[this.state.selectedListItem])
+        }
+        if(prevProps.cityList.list !== this.props.cityList.list) {
+            this.setState({selectedListItem: 0})
         }
     }
     handleListItemClick = (event, idx) => {
@@ -42,11 +45,14 @@ class Home extends Component {
             <div className={classes.root}>
                 <header className={classes.header}>
                     <div className={classes.leftBar}>
-                        <CityList handleListItemClick={this.handleListItemClick} selected={this.state.selectedListItem} cityList={cityList.list} />
+                        <CityList removeCity={this.props.removeCity} handleListItemClick={this.handleListItemClick} selected={this.state.selectedListItem} cityList={cityList.list} />
                     </div>
                     <div className={classes.rightBar}>
-                        <Input onInput={this.inputHandler} name="newCity" type="text" placeholder="Введите название города" margin="dense" className={classes.inputAddCity} />
-                        <Button onClick={() => findCity(this.state.newCity, cityList.list)} className={classes.addCityBtn} variant="outlined">Найти</Button>
+                        {cityList.error && <Typography style={{color: 'tomato'}}>{cityList.error}</Typography>}
+                        <div style={{display: 'flex', width: '100%'}}>
+                            <Input onInput={this.inputHandler} name="newCity" type="text" placeholder="Введите название города" margin="dense" className={classes.inputAddCity} />
+                            <Button onClick={() => findCity(this.state.newCity, cityList.list)} className={classes.addCityBtn} variant="outlined">Найти</Button>
+                        </div>
                     </div>
                 </header>
                 <div className={classes.main}>

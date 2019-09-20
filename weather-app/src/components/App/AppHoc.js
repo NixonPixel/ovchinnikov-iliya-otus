@@ -2,7 +2,6 @@ import {connect} from 'react-redux'
 import {compose} from 'recompose'
 import { getCurrentWeather, getFiveDayForecast, findCity } from '../../actions/actions'
 import {cityPush} from '../../actions/actionCreators'
-import classes from './classes'
 
 const mapDispathToProps = (dispatch) => {
     return {
@@ -19,4 +18,4 @@ const mapStateToProps = ({ currentWeather, fiveDaysForecast, cityList}) => {
     }
 }
 
-export default compose(connect(mapStateToProps, mapDispathToProps), classes)
+export default compose(connect(mapStateToProps, mapDispathToProps))

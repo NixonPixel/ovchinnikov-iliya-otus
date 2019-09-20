@@ -7,7 +7,8 @@ import {
   CURRENT_WEATHER_LOADING,
   CITY_LIST_ERROR,
   CITY_LIST_LOADING,
-  CITY_LIST_PUSH
+  CITY_LIST_PUSH,
+  CITY_LIST_REMOVE
 } from "./actionTypes";
 
 function fiveDayForecastLoading() {
@@ -19,6 +20,7 @@ function fiveDayForecastLoading() {
 function fiveDayForecastError(err) {
     return {
         type: FIVE_DAY_FORECAST_ERROR,
+        payload: err
     }
 }
 
@@ -29,6 +31,12 @@ function fiveDayForecastSuccess(days) {
     }
 }
 
+function removeCity(idx) {
+    return {
+        type: CITY_LIST_REMOVE,
+        payload: idx
+    }
+}
 
 function currentWeatherError(err) {
     return {
@@ -78,5 +86,6 @@ export {
     currentWeatherSuccess,
     cityError,
     cityLoading,
-    cityPush
+    cityPush,
+    removeCity,
 }

@@ -1,10 +1,6 @@
 import {withStyles} from '@material-ui/core'
-import color from '@material-ui/core/colors/orange'
 
 const classes = withStyles((theme) => ({
-    root: {
-       
-    },
     header: {
         display: 'flex',
         backgroundColor: '#f5f5f5',
@@ -13,25 +9,18 @@ const classes = withStyles((theme) => ({
     leftBar: {
         flexGrow: 1,
         padding: theme.spacing(1),
-        maxWidth: '33.33%'
+        maxWidth: '40%'
     },
     rightBar: {
         flexGrow: 1,
         marginLeft: 'auto',
         padding: theme.spacing(1),
         paddingTop: theme.spacing(3),
+        flexDirection: 'column',
         display: 'flex',
         justifyContent: 'flex-end',
-        alignItems: 'flex-end',
-        maxWidth: '33.33%'
-    },
-    headerCenter: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        flexGrow: 1,
-        paddingTop: theme.spacing(6),
-        maxWidth: '33.33%'
+        alignItems: 'center',
+        maxWidth: '40%'
     },
     withBorder: {
         border: '1px solid rgba(0, 0, 0, 0.23)',

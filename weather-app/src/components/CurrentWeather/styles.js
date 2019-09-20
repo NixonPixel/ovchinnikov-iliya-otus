@@ -14,6 +14,9 @@ const classes = withStyles((theme) => ({
     icon: {
         verticalAlign: 'middle',
         marginLeft: theme.spacing(1)
+    },
+    paragraph: {
+        fontSize: '1.5rem'
     }
 }))
 

@@ -8,17 +8,11 @@ const classes = withStyles((theme) => ({
         padding: theme.spacing(3),
         minWidth: 290
     },
-    title: {
-        textAlign: 'center',
-        color: theme.palette.primary.main,
-    },
-    icon: {
-        verticalAlign: 'middle',
-        marginLeft: theme.spacing(1)
-    },
-    paragraph: {
-        fontSize: '1.5rem'
+    card: {
+        width: '100%',
+        maxWidth: '450px'
     }
+    
 }))
 
 export default classes

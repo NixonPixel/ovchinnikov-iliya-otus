@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { List, ListItem, ListItemIcon, ListItemText, Collapse, IconButton, Typography } from "@material-ui/core";
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import { NavLink } from "react-router-dom";
-import { LocationCity } from "@material-ui/icons";
+import { LocationCity, Delete } from "@material-ui/icons";
 import withHoc from "./CityListHoc";
 
-const CityList = ({ cityList, selected, handleListItemClick, classes }) => {
+const CityList = ({ cityList, removeCity,selected, handleListItemClick, classes }) => {
     const [open, setOpen] = useState(true);
 
     function handleClick() {
@@ -30,6 +29,7 @@ const CityList = ({ cityList, selected, handleListItemClick, classes }) => {
                                 <LocationCity />
                             </ListItemIcon>
                             <ListItemText className={classes.listItemText}>{city}</ListItemText>
+                            <Delete onClick={() => removeCity(idx)} className={classes.deleteIcon} />
                         </ListItem>
                     );
                 })}

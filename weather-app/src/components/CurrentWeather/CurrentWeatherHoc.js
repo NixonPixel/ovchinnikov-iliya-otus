@@ -4,9 +4,11 @@ import {connect} from 'react-redux'
 
 const mapStateToProps = ({currentWeather}) => {
     const {weather} = currentWeather
+    
     return {
         weather: weather.weather,
-        degrees: weather.main
+        degrees: weather.main,
+        wind: weather.wind
     }
 }
 

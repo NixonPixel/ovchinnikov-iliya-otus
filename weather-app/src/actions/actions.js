@@ -8,7 +8,8 @@ import {
     fiveDayForecastSuccess,
     cityError,
     cityLoading,
-    cityPush
+    cityPush,
+    removeCity
 } from "./actionCreators";
 import {getAllCityInLocalStorage} from '../utils/utils'
 
@@ -47,7 +48,8 @@ const getFiveDayForecast = async (dispatch, name) => {
         });
         dispatch(fiveDayForecastSuccess(daysList));
     } catch (e) {
-        dispatch(fiveDayForecastError(e));
+        console.log(e.message) 
+        dispatch(fiveDayForecastError(e.message));
     }
 };
 
@@ -74,6 +76,10 @@ const findCity = async (dispatch, cityName) => {
     
 };
 
+const removeCityFromList = (dispatch, idx) => {
+    dispatch(removeCity(idx))
+    localStorage.removeItem(idx)
+}
 
 
-export { getCurrentWeather, getFiveDayForecast, findCity };
+export { getCurrentWeather, getFiveDayForecast, findCity, removeCityFromList };

@@ -8,7 +8,7 @@ import { fiveDayForecastSuccess } from "../actions/actionCreators";
 const fiveDaysForecast = (state, action) => {
     if (state === undefined) {
         return {
-            isLoading: false,
+            isLoading: true,
             error: '',
             forecast: []
         }
@@ -22,6 +22,7 @@ const fiveDaysForecast = (state, action) => {
                 forecast: []
             }
         case FIVE_DAY_FORECAST_ERROR:
+            console.log(action.payload)
             return {
                 isLoading: false,
                 error: action.payload,

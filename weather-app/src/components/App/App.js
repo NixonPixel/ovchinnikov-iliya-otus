@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import withHoc from './AppHoc'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Home from '../Home'
 import Forecast from '../Forecast'

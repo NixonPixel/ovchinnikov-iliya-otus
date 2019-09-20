@@ -6,6 +6,17 @@ const classes = withStyles((theme) => ({
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
         color: '#fff'
     },
+    deleteIcon: {
+        opacity: 0,
+        transitionDuration: '0.15s'
+    },
+    listItem: {
+        '&:hover': {
+            '& .CityList-deleteIcon-10': {
+                opacity: 1
+            }
+        }
+    },
     expandBtn: {
         background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
         color: '#fff',
